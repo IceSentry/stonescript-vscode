@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Stonescript",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#comments"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.stonescript",
+          "match": "\\b(func|import|new|ascii|asciiend|activate|equip|equipL|equipR|loadout|for|enable|disable|play|return)\\b"
+        },
+        {
+          "name": "keyword.control.stonescript",
+          "match": "[\\>|\\^]"
+        },
+        {
+          "name": "keyword.control.conditional.stonescript",
+          "match": "[?:]"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "storage.type.stonescript",
+          "match": "\\b(var)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.stonescript",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.stonescript",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "comments": {
+      "name": "comment.line.double-slash.stonescript",
+      "begin": "//",
+      "end": "\n"
+    }
+  },
+  "scopeName": "source.txt"
+}
