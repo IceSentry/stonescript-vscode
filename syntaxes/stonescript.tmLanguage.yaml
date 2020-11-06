@@ -3,33 +3,76 @@
 name: Stonescript
 patterns:
   - include: "#keywords"
-  - include: "#variables"
   - include: "#strings"
   - include: "#comments"
+  - include: "#constants"
+  - include: "#functions"
+  - include: "#statements"
 repository:
   keywords:
     patterns:
-      - name: keyword.control.stonescript
-        match: "\\b(func|import|new|ascii|asciiend|activate|equip|equipL|equipR|loadout|for|enable|disable|play|return)\\b"
-      - name: keyword.control.stonescript
-        match: "[\\>|\\^]"
-      - name: keyword.control.conditional.stonescript
+      - name: "keyword.operator.stonescript"
+        match: '\\b(&|!|\\||<|>|=)\\b'
+
+      - name: "keyword.control.stonescript"
+        match: "\\b(equip|equipL|equipR|loadout)\\b"
+
+      - name: "keyword.control.stonescript"
+        match: "\\b(for|return|import|activate|enable|disable|play|>)\\b"
+
+      - name: "keyword.control.conditional.stonescript"
         match: "[?:]"
-      # - name: keyword.other.stonescript
-      # match: "[\\^]"
-  variables:
-    patterns:
-      - name: storage.type.stonescript
-        match: "\\b(var)\\b"
+
+      - name: keyword.control.ascii.stonescript
+        begin: ascii
+        end: asciiend
+        patterns: []
+
   strings:
     name: string.quoted.double.stonescript
     begin: '"'
     end: '"'
-    patterns:
-      - name: constant.character.escape.stonescript
-        match: "\\\\."
+    patterns: []
+
   comments:
     name: comment.line.double-slash.stonescript
     begin: "//"
     end: "\n"
+
+  constants:
+    patterns:
+      - name: constant.language.boolean.stonescript
+        match: "\\b(true|false)\\b"
+
+      - name: constant.numeric.stonescript
+        match: "[0-9]"
+
+  functions:
+    patterns:
+      - name: "support.function.stonescript"
+        match: "([A-Za-z_][A-Za-z0-9_]*)\\("
+
+  statements:
+    patterns:
+      - match: "\\b(var)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b"
+        captures:
+          1:
+            name: "storage.type.stonescript"
+
+      - match: "\\b(new)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b"
+        captures:
+          1:
+            name: "keyword.stonescript"
+
+      - match: "\\b(func)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\(([A-Za-z0-9,\\s]*)\\)"
+        captures:
+          1:
+            name: storage.type.function.stonescript
+          2:
+            name: entity.name.function.stonescript
+          3:
+            patterns:
+              - match: "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+                name: variable.parameter.stonescript
+
 scopeName: source.txt
