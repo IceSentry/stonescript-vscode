@@ -19,9 +19,6 @@
     },
     {
       "include": "#statements"
-    },
-    {
-      "include": "#identifiers"
     }
   ],
   "repository": {
@@ -101,7 +98,7 @@
           }
         },
         {
-          "match": "\\b(func)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\(([A-Za-z0-9,\\s]*)\\)",
+          "match": "\\b(func)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\(([A-Za-z0-9_,\\s]*)\\)",
           "captures": {
             "1": {
               "name": "storage.type.function.stonescript"
