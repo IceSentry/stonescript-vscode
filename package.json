@@ -3,6 +3,8 @@
     "displayName": "Stonescript",
     "description": "Syntax highlighting for Stonescript",
     "version": "0.0.1",
+    "publisher": "IceSentry",
+    "repository": "https://github.com/IceSentry/stonescript-vscode",
     "engines": {
         "vscode": "^1.50.0"
     },
